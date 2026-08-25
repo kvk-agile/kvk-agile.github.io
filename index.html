@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KVK · Agile Coach</title>
+<meta name="description" content="Agile Coach, AI-Augmented. 13 years across fintech, banking, telecom, e-commerce. Based in Berlin.">
+<meta name="theme-color" content="#eef0f4">
+<style>
+  :root{
+    --page-bg: #eef0f4;
+    --window-bg: #ffffff;
+    --titlebar-bg: #ffffff;
+    --border: #e3e5ea;
+    --text: #1a1a1a;
+    --muted: #6e7280;
+    --comment: #8a8f9c;
+    --accent: #2f7dd6;
+    --prompt: #22a35a;
+    --card-bg: #f7f8fa;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+
+  body {
+    background: var(--page-bg);
+    color: var(--text);
+    font-family: "SFMono-Regular", "JetBrains Mono", "Fira Code", Menlo, Consolas, monospace;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+  }
+
+  .window {
+    width: 100%;
+    max-width: 620px;
+    background: var(--window-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 30px 60px -20px rgba(20, 24, 34, 0.18);
+    overflow: hidden;
+  }
+
+  .titlebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    background: var(--titlebar-bg);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .dots { display: flex; gap: 8px; }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot.red { background: #ff5f57; }
+  .dot.yellow { background: #febc2e; }
+  .dot.green { background: #28c840; }
+
+  .titlebar .path {
+    color: var(--comment);
+    font-size: 12.5px;
+  }
+
+  .term {
+    padding: 30px 30px 26px;
+  }
+
+  .line { margin: 0 0 20px; }
+
+  .cmd { color: var(--prompt); font-weight: 600; }
+  .cmd::before { content: "$ "; color: var(--prompt); }
+
+  .out { margin: 6px 0 0 22px; }
+
+  .name-out {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .comment {
+    color: var(--comment);
+    font-style: italic;
+    font-size: 14.5px;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .about p {
+    margin: 0 0 4px;
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+  .about b { font-weight: 700; }
+  .about .place { font-weight: 700; }
+
+  .links-grid {
+    margin: 6px 0 0 22px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .link-card {
+    display: block;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .link-card:hover,
+  .link-card:focus-visible {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+    outline: none;
+  }
+
+  .link-card .key {
+    display: block;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .link-card .key .arrow { color: var(--accent); margin-right: 4px; }
+
+  .link-card .val {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .prompt-end {
+    margin-top: 26px;
+    display: flex;
+    align-items: center;
+    color: var(--prompt);
+    font-weight: 600;
+  }
+  .prompt-end::before { content: "$ "; }
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    background: var(--text);
+    margin-left: 6px;
+    animation: blink 1.1s step-end infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  footer {
+    text-align: center;
+    color: var(--comment);
+    font-size: 12px;
+    padding: 18px 0 4px;
+  }
+
+  @media (max-width: 560px) {
+    .links-grid { grid-template-columns: repeat(2, 1fr); }
+    .name-out { font-size: 19px; }
+  }
+  @media (max-width: 380px) {
+    .links-grid { grid-template-columns: 1fr; }
+    .term { padding: 24px 18px 20px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cursor { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<div>
+  <main class="window">
+    <div class="titlebar">
+      <div class="dots">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+      </div>
+      <span class="path">kvk@portfolio:~</span>
+    </div>
+
+    <div class="term">
+      <p class="line">
+        <span class="cmd">whoami</span>
+        <span class="out name-out">Venkata Krishna Kalluri</span>
+      </p>
+
+      <div class="line">
+        <span class="cmd">cat about.md</span>
+        <div class="out about">
+          <span class="comment"># Agile Coach · AI-Augmented</span>
+          <p>13 years coaching teams across <b>fintech, banking, telecom &amp; e-commerce</b>.</p>
+          <p>Powering teams &amp; orgs with facilitation, visualization, and gamification.</p>
+        </div>
+      </div>
+
+      <div class="line">
+        <span class="cmd">ls ./links/</span>
+        <div class="links-grid">
+          <a class="link-card" href="https://www.linkedin.com/in/venkata-krishna-kalluri" target="_blank" rel="noopener">
+            <span class="key"><span class="arrow">→</span>linkedin/</span>
+            <span class="val">kvk</span>
+          </a>
+          <a class="link-card" href="mailto:venkata.k.kalluri@gmail.com">
+            <span class="key"><span class="arrow">→</span>email/</span>
+            <span class="val">venkata.k.kalluri@…</span>
+          </a>
+          <a class="link-card" href="https://talktokvk-ship-it.github.io/kvk-agile-coaching/" target="_blank" rel="noopener">
+            <span class="key"><span class="arrow">→</span>portfolio/</span>
+            <span class="val">kvk-agile-coaching</span>
+          </a>
+          <a class="link-card" href="https://talktokvk-ship-it.github.io/kvk-facilitation-portfolio" target="_blank" rel="noopener">
+            <span class="key"><span class="arrow">→</span>facilitation/</span>
+            <span class="val">kvk-facilitation</span>
+          </a>
+          <a class="link-card" href="https://kvk-ai-projects.netlify.app/" target="_blank" rel="noopener">
+            <span class="key"><span class="arrow">→</span>ai-projects/</span>
+            <span class="val">kvk-ai-projects</span>
+          </a>
+          <a class="link-card" href="https://github.com/talktokvk-ship-it" target="_blank" rel="noopener">
+            <span class="key"><span class="arrow">→</span>github/</span>
+            <span class="val">talktokvk-ship-it</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="prompt-end"><span class="cursor"></span></div>
+    </div>
+  </main>
+
+  <footer>© 2026 KVK</footer>
+</div>
+
+</body>
+</html>
